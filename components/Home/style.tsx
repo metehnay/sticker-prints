@@ -19,9 +19,28 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
+  box: {
+    backgroundColor: "#1dd2a2",
+    height: 80,
+  },
+  ImageKitten: {
+    alignContent: "center",
+    display: "flex",
+    paddingHorizontal: "auto",
+    alignItems: "center",
+    height: 250,
+    marginTop: 20,
+    marginHorizontal: "auto",
+  },
   title: {
-    color: "red",
-    margin: "auto",
-    fontSize: 34,
+    color: "#0d343c",
+    fontFamily: "Poppins",
+    fontSize: 14,
+    paddingHorizontal: 10,
+  },
+
+  top: {
+    marginTop: 0,
+    position: "absolute",
   },
 });

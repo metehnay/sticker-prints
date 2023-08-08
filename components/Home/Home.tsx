@@ -1,7 +1,16 @@
-import { View, Text, Pressable, Image } from "react-native";
+import {
+  View,
+  Text,
+  Pressable,
+  Image,
+  Dimensions,
+  StatusBar,
+  StyleSheet,
+} from "react-native";
 import { styles } from "./style";
 import { globalStyles } from "../../globalStyles";
-import { StatusBar } from "react-native";
+import Svg, { Path } from "react-native-svg";
+import SVGComponent from "../SVGComponent";
 
 const kitten = (
   <Image
@@ -11,16 +20,48 @@ const kitten = (
   />
 );
 
-const Home = () => {
+const Checkmark = ({ text }: { text: string }) => {
+  return (
+    <View style={globalStyles.row}>
+      <View style={globalStyles.borderBox}>
+        <SVGComponent fillColor="#44bfda" />
+      </View>
+      <View>
+        <Text style={styles.title}>{text}</Text>
+      </View>
+    </View>
+  );
+};
+
+const Home = ({ navigation }: any) => {
   return (
     <View style={globalStyles.container}>
-      <View style={styles.flexContainer}>
-        <View>{kitten}</View>
-        <Text style={styles.title}>Sticker Print</Text>
+      <View style={styles.top}>
+        <View style={styles.box}>
+          <Svg
+            height={200}
+            width={Dimensions.get("screen").width}
+            viewBox="0 0 1440 320"
+          >
+            <Path
+              fill="#1dd2a2"
+              d="M0,192L60,170.7C120,149,240,107,360,112C480,117,600,171,720,197.3C840,224,960,224,1080,208C1200,192,1320,160,1380,144L1440,128L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"
+            />
+          </Svg>
+        </View>
+        <View style={styles.ImageKitten}>{kitten}</View>
+        <Checkmark text="Choose your keto recipe." />
+        <Checkmark text="Add them to your favorites." />
+        <Checkmark text="Rate other users recipes." />
+        <Checkmark text="Add your own recipe!" />
       </View>
       <View style={globalStyles.buttonContainer}>
-        <Text style={globalStyles.greenButton}>SIGN UP</Text>
-        <Text style={globalStyles.greenButton}>LOGIN</Text>
+        <Pressable onPress={() => navigation.navigate("Login")}>
+          <Text style={globalStyles.greenButton}>Login</Text>
+        </Pressable>
+        <Pressable onPress={() => navigation.navigate("Sign Up")}>
+          <Text style={globalStyles.greenButton}>Sign Up</Text>
+        </Pressable>
       </View>
     </View>
   );
