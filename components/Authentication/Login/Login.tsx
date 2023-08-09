@@ -2,17 +2,32 @@ import React, { useState } from "react";
 import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import styles from "./style";
+import { firebaseApp, db } from "../../../firebaseConfig";
 
 export default function Login({ navigation }: any) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const onFooterLinkPress = () => {
-    navigation.navigate("Registration");
+    navigation.navigate("Sign Up");
   };
-
-  const onLoginPress = () => {};
-
+  const onLoginPress = () => {
+    setLoading(true);
+    firebaseApp
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(() => {
+        // You can choose to navigate to Dashboard directly,
+        // or let the useEffect in App handle the navigation
+        navigation.navigate("Dashboard");
+      })
+      .catch((error) => {
+        setLoading(false);
+        console.error("Login error:", error);
+        alert("An error occurred during login. Please try again.");
+      });
+  };
   return (
     <View style={styles.container}>
       <KeyboardAwareScrollView

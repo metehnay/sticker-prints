@@ -7,13 +7,56 @@ import { setStatusBarHidden } from "expo-status-bar";
 import { Image, StatusBar, TouchableOpacity } from "react-native";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
-import { useCallback } from "react";
+import { useCallback, useState, useEffect } from "react";
+
 import Login from "./components/Authentication/Login/Login";
 import SignUp from "./components/Authentication/SignUp/SignUp";
+import Dashboard from "./components/Dashboard/Dashboard";
+import { firebaseApp } from "./firebaseConfig";
+interface User {
+  email: string;
+  password: string;
+  name: string;
+}
 
 const Stack = createNativeStackNavigator();
 
 function App() {
+  const [user, setUser] = useState<User | null>(null); // Provide type annotation
+
+  useEffect(() => {
+    const unsubscribe = firebaseApp.auth().onAuthStateChanged((authUser) => {
+      if (authUser) {
+        firebaseApp
+          .firestore()
+          .collection("users")
+          .doc(authUser.uid)
+          .get()
+          .then((userDoc) => {
+            if (userDoc.exists) {
+              const userData = userDoc.data() as User;
+              if (userData) {
+                setUser(userData);
+              } else {
+                console.log("No user data found.");
+              }
+            } else {
+              console.log("User document does not exist.");
+            }
+          })
+          .catch((error) => {
+            console.error("Error fetching user data:", error);
+          });
+      } else {
+        setUser(null); // User is signed out
+      }
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
   const [fontsLoaded] = useFonts({
     Poppins: require("./assets/fonts/Poppins-Medium.ttf"),
     PoppinsBold: require("./assets/fonts/Poppins-Black.ttf"),
@@ -27,6 +70,7 @@ function App() {
   if (!fontsLoaded) {
     return null;
   }
+
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -39,6 +83,11 @@ function App() {
         />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Sign Up" component={SignUp} />
+        <Stack.Screen
+          name="Dashboard"
+          component={Dashboard}
+          initialParams={{ user }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
