@@ -50,10 +50,10 @@ const Home = ({ navigation }: any) => {
           </Svg>
         </View>
         <View style={styles.ImageKitten}>{kitten}</View>
-        <Checkmark text="Choose your keto recipe." />
-        <Checkmark text="Add them to your favorites." />
-        <Checkmark text="Rate other users recipes." />
-        <Checkmark text="Add your own recipe!" />
+        <Checkmark text="Ruh halini seç." />
+        <Checkmark text="Ruh haline göre tarifleri bul" />
+        <Checkmark text="Tarifleri favorilerine ekle." />
+        <Checkmark text="Kendi tarifini yaz!" />
       </View>
       <View style={globalStyles.buttonContainer}>
         <Pressable onPress={() => navigation.navigate("Login")}>

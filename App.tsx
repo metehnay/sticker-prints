@@ -13,6 +13,8 @@ import Login from "./components/Authentication/Login/Login";
 import SignUp from "./components/Authentication/SignUp/SignUp";
 import Dashboard from "./components/Dashboard/Dashboard";
 import { firebaseApp } from "./firebaseConfig";
+import Tarifler from "./components/Tarifler/Tarifler";
+import Tarif from "./components/Tarif/Tarif";
 interface User {
   email: string;
   password: string;
@@ -88,6 +90,12 @@ function App() {
           component={Dashboard}
           initialParams={{ user }}
         />
+        <Stack.Screen
+          name="Tarifler"
+          component={Tarifler}
+          initialParams={{ user }}
+        />
+        <Stack.Screen name="Tarif" component={Tarif} initialParams={{ user }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

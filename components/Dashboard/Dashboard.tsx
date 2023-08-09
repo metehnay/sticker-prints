@@ -1,35 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, TextInput, Button } from "react-native";
+import {
+  View,
+  Text,
+  Pressable,
+  TextInput,
+  Button,
+  FlatList,
+} from "react-native";
 import firebase from "firebase/app";
 import "firebase/firestore";
 import { firebaseApp, db } from "../../firebaseConfig";
 import style from "./style";
 
-const Dashboard = ({ route }: any) => {
+const Dashboard = ({ route, navigation }: any) => {
   const user = route.params?.user;
-  const [title, setTitle] = useState("");
-  const [dakika, setDakika] = useState("");
-  const [kisi, setKisi] = useState("");
-  const [zorluk, setZorluk] = useState("");
-  const admin = user.email === "b@gmail.com";
-  const handlePostSubmit = async () => {
-    if (title.trim() === "") {
-      return;
-    }
-
-    try {
-      await firebaseApp.firestore().collection("tembel").add({
-        title: title,
-        kackisi: kisi,
-        kacdakika: dakika,
-        zorlukseviyesi: zorluk,
-      });
-
-      setTitle("");
-    } catch (error) {
-      console.error("Error creating post:", error);
-    }
-  };
 
   if (!user) {
     return <Text>Yükleniyor...</Text>;
@@ -38,34 +22,18 @@ const Dashboard = ({ route }: any) => {
   return (
     <View>
       <Text>Merhaba, {user.fullName}! Bugün nasıl hissediyorsun?</Text>
-
-      <Text>{title}</Text>
-      <TextInput
-        placeholder="Enter your post"
-        value={title}
-        onChangeText={(text) => setTitle(text)}
-        style={style.inputStyle}
-      />
-      <TextInput
-        placeholder="Enter your post"
-        value={kisi}
-        onChangeText={(text) => setKisi(text)}
-        style={style.inputStyle}
-      />
-      <TextInput
-        placeholder="Enter your post"
-        value={dakika}
-        onChangeText={(text) => setDakika(text)}
-        style={style.inputStyle}
-      />
-      <TextInput
-        placeholder="Enter your post"
-        value={zorluk}
-        onChangeText={(text) => setZorluk(text)}
-        style={style.inputStyle}
-      />
-
-      <Button title="Gönder" onPress={handlePostSubmit} />
+      <Pressable
+        style={style.box1}
+        onPress={() => navigation.navigate("Tarifler")}
+      >
+        <Text style={style.box1text}>Yorgun</Text>
+      </Pressable>
+      <Pressable style={style.box2}>
+        <Text style={style.box1text}>Enerji Dolu</Text>
+      </Pressable>
+      <Pressable style={style.box3}>
+        <Text style={style.box1text}>Sinirli</Text>
+      </Pressable>
     </View>
   );
 };
