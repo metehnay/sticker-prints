@@ -34,8 +34,13 @@ export const styles = StyleSheet.create({
     display: "flex",
     marginLeft: 10,
   },
+  imageCs: {
+    width: "100%",
+    height: 250, // Set a fixed height for all images
+    resizeMode: "cover",
+  },
   bg: {
-    backgroundColor: "#2cbc6e",
+    backgroundColor: "#1dd2a2",
     borderRadius: 12,
     display: "flex",
     flexDirection: "row",

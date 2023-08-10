@@ -56,11 +56,16 @@ const Home = ({ navigation }: any) => {
         <Checkmark text="Kendi tarifini yaz!" />
       </View>
       <View style={globalStyles.buttonContainer}>
+        <Pressable onPress={() => navigation.navigate("Dashboard")}>
+          <Text style={globalStyles.greenButton}>
+            Ziyaretçi olarak devam et
+          </Text>
+        </Pressable>
         <Pressable onPress={() => navigation.navigate("Login")}>
-          <Text style={globalStyles.greenButton}>Login</Text>
+          <Text style={globalStyles.greenButton}>Giriş yap</Text>
         </Pressable>
         <Pressable onPress={() => navigation.navigate("Sign Up")}>
-          <Text style={globalStyles.greenButton}>Sign Up</Text>
+          <Text style={globalStyles.greenButton}>Kayıt ol</Text>
         </Pressable>
       </View>
     </View>

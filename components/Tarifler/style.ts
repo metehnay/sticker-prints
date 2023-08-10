@@ -11,12 +11,12 @@ export const styles = StyleSheet.create({
   box: {
     width: "47%", // You can adjust this to your desired card width
     height: 220, // Set a fixed height for all cards
-    padding: 10,
-    borderRadius: 8,
     backgroundColor: "white",
     overflow: "hidden",
     marginVertical: 7,
     marginHorizontal: 5,
+    borderBottomLeftRadius: 4,
+    borderBottomRightRadius: 4,
   },
   flatListContainer: {
     flexGrow: 1,

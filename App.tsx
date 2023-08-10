@@ -1,20 +1,28 @@
 import * as React from "react";
-import { View, Text } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
+import { View, Text, StyleSheet } from "react-native";
+import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "./components/Home";
-import { setStatusBarHidden } from "expo-status-bar";
-import { Image, StatusBar, TouchableOpacity } from "react-native";
+import { StatusBar } from "expo-status-bar";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback, useState, useEffect } from "react";
-
 import Login from "./components/Authentication/Login/Login";
 import SignUp from "./components/Authentication/SignUp/SignUp";
 import Dashboard from "./components/Dashboard/Dashboard";
 import { firebaseApp } from "./firebaseConfig";
 import Tarifler from "./components/Tarifler/Tarifler";
 import Tarif from "./components/Tarif/Tarif";
+import CustomArrow from "./components/Navigation/CustomArrow";
+
+const Theme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: "#ffffff",
+  },
+};
+
 interface User {
   email: string;
   password: string;
@@ -74,14 +82,27 @@ function App() {
   }
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
+    <NavigationContainer theme={Theme}>
+      <StatusBar style="light" />
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: true, // Show header for all screens
+          headerBackTitleVisible: false,
+          headerShadowVisible: false,
+          headerTitleStyle: {
+            color: "#0d343c",
+          },
+          headerStyle: {
+            backgroundColor: "#fff",
+          },
+          headerTintColor: "#1dd2a2",
+          headerTitleAlign: "left",
+        }}
+      >
         <Stack.Screen
           name="Home"
           component={Home}
-          options={() => ({
-            headerShown: false,
-          })}
+          options={{ headerShown: false }} // Hide header for Home screen
         />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Sign Up" component={SignUp} />
@@ -100,5 +121,11 @@ function App() {
     </NavigationContainer>
   );
 }
+
+const styles = StyleSheet.create({
+  appContainer: {
+    backgroundColor: "green", // Change this to your desired background color
+  },
+});
 
 export default App;

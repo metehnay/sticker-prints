@@ -9,28 +9,34 @@ export default StyleSheet.create({
   },
 
   box1: {
-    backgroundColor: "#f08080",
-    borderRadius: 12,
-    padding: 24,
+    padding: 10,
     marginHorizontal: 12,
     marginVertical: 10,
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
   },
-  box2: {
-    backgroundColor: "red",
+  icon: {
+    backgroundColor: "#ebf9fb",
     borderRadius: 12,
-    padding: 24,
-    marginHorizontal: 12,
-    marginVertical: 10,
+    marginRight: 10,
+    padding: 14,
   },
-  box3: {
-    backgroundColor: "green",
-    borderRadius: 12,
-    padding: 24,
-    marginHorizontal: 12,
-    marginVertical: 10,
+  welcome: {
+    fontFamily: "Poppins",
+    fontSize: 13,
+    textAlign: "center",
+    padding: 20,
   },
-  box1text: {
-    color: "#ffffff",
-    fontSize: 24,
+  text: {
+    color: "#0d343c",
+    fontFamily: "PoppinsBold",
+    fontSize: 16,
+  },
+  subtext: {
+    color: "#b1b1b1",
+    fontFamily: "Poppins",
+    fontSize: 13,
+    maxWidth: "90%",
   },
 });

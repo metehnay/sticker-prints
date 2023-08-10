@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text } from "react-native";
+import { View, Text, Image } from "react-native";
 import { styles } from "./style";
 import Svg, { G, Path } from "react-native-svg";
 
@@ -28,7 +28,11 @@ const Tarif = ({ route }: any) => {
 
   return (
     <View>
-      <Text style={styles.title}>{item.title}</Text>
+      <Image
+        source={{ uri: item.imageUrl }}
+        style={styles.imageCs}
+        resizeMode="cover"
+      />
       <View style={styles.box}>
         <View style={styles.bg}>
           <Svg width="35px" height="35px" viewBox="0 0 24 24" fill="none">
@@ -56,7 +60,6 @@ const Tarif = ({ route }: any) => {
           <Text key={index}>{ingredient}</Text>
         ))}
       </View>
-
       <View style={styles.box}>
         <View style={styles.bg}>
           <Svg
