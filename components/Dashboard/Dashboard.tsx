@@ -6,6 +6,7 @@ import {
   TextInput,
   Button,
   FlatList,
+  ScrollView,
 } from "react-native";
 import firebase from "firebase/app";
 import "firebase/firestore";
@@ -14,14 +15,8 @@ import style from "./style";
 import { Svg, Path, Circle } from "react-native-svg";
 
 const Dashboard = ({ route, navigation }: any) => {
-  const user = route.params?.user;
-
-  if (!user) {
-    return <Text>Yükleniyor...</Text>;
-  }
-
   return (
-    <View>
+    <ScrollView>
       <Pressable
         style={style.box1}
         onPress={() => navigation.navigate("Tarifler")}
@@ -141,7 +136,7 @@ const Dashboard = ({ route, navigation }: any) => {
           </Text>
         </View>
       </Pressable>
-    </View>
+    </ScrollView>
   );
 };
 

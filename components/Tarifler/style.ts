@@ -27,4 +27,36 @@ export const styles = StyleSheet.create({
     height: 150, // Set a fixed height for all images
     resizeMode: "cover",
   },
+  imageContainer: {
+    position: "relative",
+    elevation: 5, // Add elevation for shadow
+    backgroundColor: "transparent",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 4,
+  },
+  imageOverlay: {
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 30, // Adjust the overlay height as needed
+    backgroundColor: "rgba(0, 0, 0, 0.3)", // Transparent black color
+  },
+  zorlukOverlay: {
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    paddingHorizontal: 10,
+    right: 0,
+    height: 30, // Adjust the overlay height as needed
+    backgroundColor: "rgba(0, 0, 0, 0.3)", // Transparent black color
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+  },
 });

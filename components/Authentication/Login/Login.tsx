@@ -69,20 +69,20 @@ export default function Login({ navigation }: any) {
           style={styles.input}
           placeholderTextColor="#aaaaaa"
           secureTextEntry
-          placeholder="Password"
+          placeholder="Şifre"
           onChangeText={(text) => setPassword(text)}
           value={password}
           underlineColorAndroid="transparent"
           autoCapitalize="none"
         />
         <TouchableOpacity style={styles.button} onPress={() => onLoginPress()}>
-          <Text style={styles.buttonTitle}>Log in</Text>
+          <Text style={styles.buttonTitle}>Giriş Yap</Text>
         </TouchableOpacity>
         <View style={styles.footerView}>
           <Text style={styles.footerText}>
-            Don't have an account?{" "}
+            Hesabınız yok mu?{" "}
             <Text onPress={onFooterLinkPress} style={styles.footerLink}>
-              Sign up
+              Kayıt ol
             </Text>
           </Text>
         </View>

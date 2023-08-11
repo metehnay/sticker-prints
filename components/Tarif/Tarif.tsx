@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, ScrollView } from "react-native";
 import { styles } from "./style";
 import Svg, { G, Path } from "react-native-svg";
 
@@ -26,8 +26,11 @@ const Tarif = ({ route }: any) => {
     tarifSteps.push(tarif.slice(i, i + 4).join("."));
   }
 
+  const [grayBackground, setGrayBackground] = useState(false);
+
   return (
-    <View>
+    <ScrollView>
+      <Text style={styles.titles}>{item.title}</Text>
       <Image
         source={{ uri: item.imageUrl }}
         style={styles.imageCs}
@@ -57,7 +60,16 @@ const Tarif = ({ route }: any) => {
           </Svg>
         </View>
         {ingredientsArray.map((ingredient: string, index: number) => (
-          <Text key={index}>{ingredient}</Text>
+          <Text
+            key={index}
+            style={{
+              backgroundColor: index % 2 === 0 ? "#fff" : "#f8f7f7",
+              padding: 10,
+              borderRadius: 10,
+            }}
+          >
+            {ingredient}
+          </Text>
         ))}
       </View>
       <View style={styles.box}>
@@ -85,7 +97,7 @@ const Tarif = ({ route }: any) => {
           </Text>
         ))}
       </View>
-    </View>
+    </ScrollView>
   );
 };
 

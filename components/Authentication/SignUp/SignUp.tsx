@@ -74,7 +74,7 @@ export default function SignUp({ navigation }: any) {
         </View>
         <TextInput
           style={styles.input}
-          placeholder="Full Name"
+          placeholder="Adınız"
           placeholderTextColor="#aaaaaa"
           onChangeText={(text) => setFullName(text)}
           value={fullName}
@@ -94,7 +94,7 @@ export default function SignUp({ navigation }: any) {
           style={styles.input}
           placeholderTextColor="#aaaaaa"
           secureTextEntry
-          placeholder="Password"
+          placeholder="Şifre"
           onChangeText={(text) => setPassword(text)}
           value={password}
           underlineColorAndroid="transparent"
@@ -104,7 +104,7 @@ export default function SignUp({ navigation }: any) {
           style={styles.input}
           placeholderTextColor="#aaaaaa"
           secureTextEntry
-          placeholder="Confirm Password"
+          placeholder="Şifrenizi tekrar yazın"
           onChangeText={(text) => setConfirmPassword(text)}
           value={confirmPassword}
           underlineColorAndroid="transparent"
@@ -114,13 +114,13 @@ export default function SignUp({ navigation }: any) {
           style={styles.button}
           onPress={() => onRegisterPress()}
         >
-          <Text style={styles.buttonTitle}>Create account</Text>
+          <Text style={styles.buttonTitle}>Hesabımı oluştur</Text>
         </TouchableOpacity>
         <View style={styles.footerView}>
           <Text style={styles.footerText}>
-            Already got an account?{" "}
+            Zaten bir hesabınız var mı?{" "}
             <Text onPress={onFooterLinkPress} style={styles.footerLink}>
-              Log in
+              Giriş yap
             </Text>
           </Text>
         </View>

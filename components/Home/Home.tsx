@@ -20,11 +20,11 @@ const kitten = (
   />
 );
 
-const Checkmark = ({ text }: { text: string }) => {
+const Checkmark = ({ text, icon }: { text: string; icon: string }) => {
   return (
     <View style={globalStyles.row}>
       <View style={globalStyles.borderBox}>
-        <SVGComponent fillColor="#44bfda" />
+        <SVGComponent iconName={icon} />
       </View>
       <View>
         <Text style={styles.title}>{text}</Text>
@@ -50,23 +50,45 @@ const Home = ({ navigation }: any) => {
           </Svg>
         </View>
         <View style={styles.ImageKitten}>{kitten}</View>
-        <Checkmark text="Ruh halini seç." />
-        <Checkmark text="Ruh haline göre tarifleri bul" />
-        <Checkmark text="Tarifleri favorilerine ekle." />
-        <Checkmark text="Kendi tarifini yaz!" />
+        <Checkmark
+          icon="happyman"
+          text="Ruh halinizi seçin ve yüzlerce tarife erişin."
+        />
+        <Checkmark
+          icon="checkmark"
+          text="Elinizdeki malzemelere göre tarif bulun."
+        />
+        <Checkmark
+          icon="checkmark"
+          text="Tarifleri zorluk derecesine göre filtreleyin."
+        />
+        <Checkmark
+          icon="checkmark"
+          text="Beğendiğiniz tarifleri tarif defterinize ekleyin."
+        />
       </View>
       <View style={globalStyles.buttonContainer}>
-        <Pressable onPress={() => navigation.navigate("Dashboard")}>
-          <Text style={globalStyles.greenButton}>
-            Ziyaretçi olarak devam et
-          </Text>
-        </Pressable>
-        <Pressable onPress={() => navigation.navigate("Login")}>
-          <Text style={globalStyles.greenButton}>Giriş yap</Text>
-        </Pressable>
-        <Pressable onPress={() => navigation.navigate("Sign Up")}>
-          <Text style={globalStyles.greenButton}>Kayıt ol</Text>
-        </Pressable>
+        <View>
+          <Pressable onPress={() => navigation.navigate("Dashboard")}>
+            <Text style={globalStyles.greenButton}>
+              Misafir olarak devam et
+            </Text>
+          </Pressable>
+          <View style={styles.row}>
+            <Pressable
+              onPress={() => navigation.navigate("Login")}
+              style={{ width: "50%", marginRight: 5 }}
+            >
+              <Text style={globalStyles.greenButton}>Giriş Yap</Text>
+            </Pressable>
+            <Pressable
+              onPress={() => navigation.navigate("Sign Up")}
+              style={{ width: "50%" }}
+            >
+              <Text style={globalStyles.greenButton}>Kayıt Ol</Text>
+            </Pressable>
+          </View>
+        </View>
       </View>
     </View>
   );

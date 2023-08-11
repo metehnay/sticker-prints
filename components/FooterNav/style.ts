@@ -1,13 +1,10 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-  box: {
+  footer: {
     backgroundColor: "#ffffff",
-    padding: 14,
-    marginHorizontal: 10,
-    marginTop: 5,
-    borderRadius: 12,
-    fontFamily: "Poppins",
+    paddingHorizontal: 10,
+    paddingVertical: 20,
   },
 
   title: {

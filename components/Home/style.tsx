@@ -43,4 +43,11 @@ export const styles = StyleSheet.create({
     marginTop: 0,
     position: "absolute",
   },
+  row: {
+    flexDirection: "row",
+    display: "flex",
+    width: "100%",
+    justifyContent: "space-between",
+    overflow: "hidden",
+  },
 });

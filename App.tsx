@@ -1,6 +1,13 @@
 import * as React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
+import {
+  NavigationContainer,
+  DefaultTheme,
+  useRoute,
+  NavigationState,
+  useFocusEffect,
+  Route,
+} from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "./components/Home";
 import { StatusBar } from "expo-status-bar";
@@ -14,6 +21,7 @@ import { firebaseApp } from "./firebaseConfig";
 import Tarifler from "./components/Tarifler/Tarifler";
 import Tarif from "./components/Tarif/Tarif";
 import CustomArrow from "./components/Navigation/CustomArrow";
+import FooterNav from "./components/FooterNav/FooterNav";
 
 const Theme = {
   ...DefaultTheme,
@@ -32,7 +40,20 @@ interface User {
 const Stack = createNativeStackNavigator();
 
 function App() {
-  const [user, setUser] = useState<User | null>(null); // Provide type annotation
+  const [user, setUser] = useState<User | null>(null);
+  const [isFooterVisible, setIsFooterVisible] = useState(false);
+
+  const onNavigationStateChange = (state: NavigationState | undefined) => {
+    if (state) {
+      const activeRoute = state.routes[state.index] as Route<string>;
+      const shouldShowFooter =
+        activeRoute.name !== "Home" &&
+        activeRoute.name !== "Login" &&
+        activeRoute.name !== "Sign Up";
+
+      setIsFooterVisible(shouldShowFooter);
+    }
+  };
 
   useEffect(() => {
     const unsubscribe = firebaseApp.auth().onAuthStateChanged((authUser) => {
@@ -82,7 +103,7 @@ function App() {
   }
 
   return (
-    <NavigationContainer theme={Theme}>
+    <NavigationContainer theme={Theme} onStateChange={onNavigationStateChange}>
       <StatusBar style="light" />
       <Stack.Navigator
         screenOptions={{
@@ -102,15 +123,20 @@ function App() {
         <Stack.Screen
           name="Home"
           component={Home}
-          options={{ headerShown: false }} // Hide header for Home screen
+          options={{ headerShown: false }}
         />
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Sign Up" component={SignUp} />
         <Stack.Screen
           name="Dashboard"
           component={Dashboard}
           initialParams={{ user }}
+          options={{
+            headerTitle: "Bugün nasıl hissediyorsun?",
+          }}
         />
+
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Sign Up" component={SignUp} />
+
         <Stack.Screen
           name="Tarifler"
           component={Tarifler}
@@ -118,6 +144,7 @@ function App() {
         />
         <Stack.Screen name="Tarif" component={Tarif} initialParams={{ user }} />
       </Stack.Navigator>
+      {isFooterVisible && <FooterNav />}
     </NavigationContainer>
   );
 }
